@@ -147,6 +147,18 @@
 
   /* ---------- Service row line draw (hover handled by CSS; add focus/keyboard parity already via :focus-within) ---------- */
 
+  /* ---------- Work card stagger reveal ---------- */
+  var workCards = document.querySelectorAll(".work-card");
+  if (workCards.length) {
+    if (!reduceMotion && hasGSAP && window.ScrollTrigger) {
+      gsap.set(workCards, { opacity: 0, y: 32 });
+      gsap.to(workCards, {
+        opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.12,
+        scrollTrigger: { trigger: "[data-work-grid]", start: "top 85%" }
+      });
+    }
+  }
+
   /* ---------- Contact form ---------- */
   var form = document.querySelector("[data-contact-form]");
   if (form) {
