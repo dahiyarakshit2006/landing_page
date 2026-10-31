@@ -147,7 +147,7 @@
 
   /* ---------- Service row line draw (hover handled by CSS; add focus/keyboard parity already via :focus-within) ---------- */
 
-  /* ---------- Work: pinned horizontal scroll (desktop) ---------- */
+  /* ---------- Work: scroll-driven horizontal gallery (desktop pin) ---------- */
   var workPin = document.querySelector("[data-work-pin]");
   var workTrack = document.querySelector("[data-work-track]");
   var workViewport = workPin && workPin.querySelector(".work-pin-viewport");
@@ -156,9 +156,16 @@
     if (!reduceMotion && hasGSAP && window.ScrollTrigger) {
       var mm = gsap.matchMedia();
       mm.add("(min-width: 900px)", function () {
+        // Desktop pin layout is applied for the whole breakpoint lifetime so
+        // there's no layout jump when the pin toggles on/off mid-scroll.
+        workViewport.setAttribute("data-pinned", "");
+
+        // How far the track must travel so the last card's right edge lands at
+        // the viewport's right edge: full track width minus one viewport width.
         var distance = function () {
           return Math.max(0, workTrack.scrollWidth - workViewport.clientWidth);
         };
+
         var tween = gsap.to(workTrack, {
           x: function () { return -distance(); },
           ease: "none",
@@ -169,13 +176,10 @@
             pin: true,
             scrub: 0.8,
             anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onToggle: function (self) {
-              if (self.isActive) workViewport.setAttribute("data-pinned", "");
-              else workViewport.removeAttribute("data-pinned");
-            }
+            invalidateOnRefresh: true
           }
         });
+
         return function () {
           if (tween.scrollTrigger) tween.scrollTrigger.kill();
           tween.kill();
@@ -184,6 +188,7 @@
         };
       });
     } else {
+      // No-JS-motion / mobile: native horizontal swipe with snap, no scroll hijack.
       workViewport.style.scrollSnapType = "x proximity";
     }
   }
