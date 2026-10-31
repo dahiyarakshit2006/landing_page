@@ -1,0 +1,42 @@
+:root {
+  /* Color */
+  --paper: #ECECEA;
+  --card: #F7F7F5;
+  --ink: #0B0B0B;
+  --ink-2: #474747;
+  --muted: #858585;
+  --line: #D2D2CE;
+  --dark: #161616;
+  --dark-2: #232323;
+  --on-dark: #F2F2F0;
+  --on-dark-muted: #9A9A96;
+
+  /* Type families */
+  --font-display: "Archimoto", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Switzer", "Helvetica Neue", Arial, sans-serif;
+
+  /* Type scale */
+  --fs-display: clamp(3rem, 9vw, 9rem);
+  --fs-h2: clamp(2.25rem, 5vw, 4.5rem);
+  --fs-h3: clamp(1.5rem, 2.4vw, 2.25rem);
+  --fs-lead: clamp(1.25rem, 2vw, 1.5rem);
+  --fs-body: clamp(1.0625rem, 1vw, 1.25rem);
+  --fs-eyebrow: 0.8125rem;
+  --fs-caption: 0.875rem;
+
+  /* Spacing */
+  --gutter: clamp(16px, 3vw, 48px);
+  --section-y: clamp(80px, 12vw, 180px);
+  --radius-card: 8px;
+  --radius-btn: 5px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.25s;
+  --dur-base: 0.7s;
+  --dur-slow: 1.1s;
+
+  --max-line: 62ch;
+  --header-h: 76px;
+}

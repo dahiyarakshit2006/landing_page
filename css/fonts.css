@@ -1,0 +1,61 @@
+/* Archimoto — headings, display, eyebrow, numerals */
+@font-face {
+  font-family: "Archimoto";
+  src: url("../assets/fonts/archimoto/Archimoto-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Archimoto";
+  src: url("../assets/fonts/archimoto/Archimoto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Archimoto";
+  src: url("../assets/fonts/archimoto/Archimoto-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Archimoto";
+  src: url("../assets/fonts/archimoto/Archimoto-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Archimoto";
+  src: url("../assets/fonts/archimoto/Archimoto-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Archimoto";
+  src: url("../assets/fonts/archimoto/Archimoto-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Switzer — body, UI, buttons, nav, captions, forms */
+@font-face {
+  font-family: "Switzer";
+  src:
+    url("../assets/fonts/switzer/Switzer-Variable.woff2") format("woff2"),
+    url("../assets/fonts/switzer/Switzer-Variable.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("../assets/fonts/switzer/Switzer-VariableItalic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
