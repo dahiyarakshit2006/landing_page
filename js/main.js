@@ -147,15 +147,44 @@
 
   /* ---------- Service row line draw (hover handled by CSS; add focus/keyboard parity already via :focus-within) ---------- */
 
-  /* ---------- Work card stagger reveal ---------- */
-  var workCards = document.querySelectorAll(".work-card");
-  if (workCards.length) {
+  /* ---------- Work: pinned horizontal scroll (desktop) ---------- */
+  var workPin = document.querySelector("[data-work-pin]");
+  var workTrack = document.querySelector("[data-work-track]");
+  var workViewport = workPin && workPin.querySelector(".work-pin-viewport");
+
+  if (workPin && workTrack && workViewport) {
     if (!reduceMotion && hasGSAP && window.ScrollTrigger) {
-      gsap.set(workCards, { opacity: 0, y: 32 });
-      gsap.to(workCards, {
-        opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.12,
-        scrollTrigger: { trigger: "[data-work-grid]", start: "top 85%" }
+      var mm = gsap.matchMedia();
+      mm.add("(min-width: 900px)", function () {
+        var distance = function () {
+          return Math.max(0, workTrack.scrollWidth - workViewport.clientWidth);
+        };
+        var tween = gsap.to(workTrack, {
+          x: function () { return -distance(); },
+          ease: "none",
+          scrollTrigger: {
+            trigger: workPin,
+            start: "top top",
+            end: function () { return "+=" + distance(); },
+            pin: true,
+            scrub: 0.8,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onToggle: function (self) {
+              if (self.isActive) workViewport.setAttribute("data-pinned", "");
+              else workViewport.removeAttribute("data-pinned");
+            }
+          }
+        });
+        return function () {
+          if (tween.scrollTrigger) tween.scrollTrigger.kill();
+          tween.kill();
+          gsap.set(workTrack, { clearProps: "transform" });
+          workViewport.removeAttribute("data-pinned");
+        };
       });
+    } else {
+      workViewport.style.scrollSnapType = "x proximity";
     }
   }
 

@@ -354,15 +354,26 @@ p.body-copy { max-width: var(--max-line); color: var(--ink-2); }
 .process-col .process-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-dark-muted); margin-bottom: 0.6rem; }
 @media (min-width: 900px) { .process-cols { grid-template-columns: repeat(3, 1fr); } }
 
-/* ===== Work ===== */
+/* ===== Work (horizontal pinned scroll) ===== */
+.work-section { overflow: hidden; }
+.work-head-wrap { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.work-pin-viewport {
+  overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.work-pin-viewport::-webkit-scrollbar { display: none; }
 .work-grid {
-  display: grid; gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: flex; gap: 1.5rem; width: max-content;
+  padding-left: var(--gutter); padding-right: var(--gutter);
 }
 .work-card {
   position: relative; border-radius: var(--radius-card); overflow: hidden;
-  aspect-ratio: 4 / 3; background: var(--dark);
+  flex: 0 0 auto; width: min(82vw, 560px); aspect-ratio: 4 / 3; background: var(--dark);
+  scroll-snap-align: start;
 }
+.js .work-pin-viewport[data-pinned] { overflow: visible; }
+.js .work-pin-viewport:not([data-pinned]) { scroll-snap-type: x proximity; }
 .work-card-link {
   position: absolute; inset: 0; display: block; color: var(--on-dark);
   text-decoration: none;
@@ -398,12 +409,8 @@ p.body-copy { max-width: var(--max-line); color: var(--ink-2); }
 }
 .work-card h3 { font-size: 1.15rem; color: var(--on-dark); margin-bottom: 0.35rem; }
 .work-card p.outcome { color: var(--on-dark-muted); font-size: 0.92rem; max-width: 42ch; }
-@media (min-width: 700px) and (max-width: 1099px) {
-  .work-grid { grid-template-columns: repeat(2, 1fr); }
-  .work-card:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
-}
-@media (min-width: 1100px) {
-  .work-grid { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 900px) {
+  .work-card { width: min(44vw, 620px); }
 }
 
 /* ===== Pillars ===== */
