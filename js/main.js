@@ -145,7 +145,81 @@
     }
   }
 
-  /* ---------- Service row line draw (hover handled by CSS; add focus/keyboard parity already via :focus-within) ---------- */
+  /* ---------- Services: editorial list with a shared moving highlight ---------- */
+  var svcList = document.querySelector("[data-svc-list]");
+  if (svcList) {
+    var svcRows = Array.prototype.slice.call(svcList.querySelectorAll("[data-svc-row]"));
+    var svcHighlight = svcList.querySelector("[data-svc-highlight]");
+    var svcDesktopMQ = window.matchMedia("(min-width: 900px)");
+    var svcActive = 0;
+    var svcFirstMove = true;
+
+    function svcMoveHighlight(row, animate) {
+      if (!svcHighlight) return;
+      var props = { x: 0, y: row.offsetTop, width: row.offsetWidth, height: row.offsetHeight, opacity: 1 };
+      if (hasGSAP && animate && !reduceMotion) {
+        gsap.to(svcHighlight, Object.assign({ duration: svcFirstMove ? 0 : 0.45, ease: "power2.out" }, props));
+      } else if (hasGSAP) {
+        gsap.set(svcHighlight, props);
+      } else {
+        svcHighlight.style.transform = "translateY(" + row.offsetTop + "px)";
+        svcHighlight.style.width = row.offsetWidth + "px";
+        svcHighlight.style.height = row.offsetHeight + "px";
+        svcHighlight.style.opacity = "1";
+      }
+      svcFirstMove = false;
+    }
+
+    function svcSetActive(i, animate) {
+      if (i < 0 || i >= svcRows.length) return;
+      svcActive = i;
+      svcRows.forEach(function (r, idx) { r.classList.toggle("is-active", idx === i); });
+      if (svcDesktopMQ.matches) svcMoveHighlight(svcRows[i], animate);
+    }
+
+    // Delegated pointer/focus handling (mouseover + focusin bubble reliably).
+    function svcRowIndex(e) {
+      var row = e.target.closest ? e.target.closest("[data-svc-row]") : null;
+      return row ? svcRows.indexOf(row) : -1;
+    }
+    svcList.addEventListener("mouseover", function (e) {
+      if (!svcDesktopMQ.matches) return;
+      var i = svcRowIndex(e);
+      if (i > -1 && i !== svcActive) svcSetActive(i, true);
+    });
+    svcList.addEventListener("focusin", function (e) {
+      if (!svcDesktopMQ.matches) return;
+      var i = svcRowIndex(e);
+      if (i > -1) svcSetActive(i, true);
+    });
+
+    // Clicking a service pre-selects it in the contact form, then the anchor
+    // scrolls to #contact (uses the existing form, invents no new routes).
+    svcList.addEventListener("click", function (e) {
+      var row = e.target.closest ? e.target.closest("[data-svc-row]") : null;
+      if (!row) return;
+      var service = row.getAttribute("data-service");
+      var select = document.querySelector("#f-service");
+      if (service && select) {
+        var opt = Array.prototype.slice.call(select.options).filter(function (o) { return o.value === service || o.text === service; })[0];
+        if (opt) select.value = opt.value;
+      }
+    });
+
+    function svcInit() {
+      svcFirstMove = true;
+      if (svcDesktopMQ.matches) svcSetActive(svcActive, false);
+      else if (svcHighlight) { hasGSAP ? gsap.set(svcHighlight, { opacity: 0 }) : (svcHighlight.style.opacity = "0"); }
+    }
+    if (document.readyState === "complete") svcInit();
+    else window.addEventListener("load", svcInit);
+
+    var svcResizeRAF;
+    window.addEventListener("resize", function () {
+      cancelAnimationFrame(svcResizeRAF);
+      svcResizeRAF = requestAnimationFrame(function () { svcFirstMove = true; svcInit(); });
+    }, { passive: true });
+  }
 
   /* ---------- Work: scroll-driven horizontal gallery (desktop pin) ---------- */
   var workPin = document.querySelector("[data-work-pin]");

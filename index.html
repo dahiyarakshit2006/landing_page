@@ -139,95 +139,113 @@
     </div>
   </section>
 
-  <!-- 4. SERVICES -->
+  <!-- 4. SERVICES — editorial two-column index with moving active-row highlight -->
   <section id="services" aria-labelledby="services-title">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">What we do</p>
-        <h2 id="services-title">Services in motion.</h2>
-      </div>
-      <div class="services-list">
+      <div class="svc-layout" data-svc>
 
-        <div class="service-row">
-          <span class="service-num">01</span>
-          <div class="service-body">
-            <h3>Strategy</h3>
-            <p>Brand audits, market and competitor research, personas, positioning, purpose and values, naming, taglines, brand architecture.</p>
-            <div class="service-tags"><span>Positioning</span><span>Naming</span><span>Brand architecture</span><span>Research</span></div>
+        <!-- LEFT: editorial heading (stays stable while the list is scanned) -->
+        <div class="svc-left">
+          <div class="section-head">
+            <p class="eyebrow">What we do</p>
+            <h2 id="services-title">Services in motion.</h2>
           </div>
-          <span class="service-explore"><span class="service-explore-label">Explore</span><span class="service-explore-arrow" aria-hidden="true">&rarr;</span></span>
+          <p class="svc-left-note">Eight connected services — one team, from the first idea to long-term upkeep. Pick where you want to start.</p>
         </div>
 
-        <div class="service-row">
-          <span class="service-num">02</span>
-          <div class="service-body">
-            <h3>Identity &amp; design</h3>
-            <p>Logos, colors, typography, brand guidelines, voice and tone, stationery, packaging, pitch decks, company profiles, rebrands.</p>
-            <div class="service-tags"><span>Logo &amp; system</span><span>Guidelines</span><span>Packaging</span><span>Rebrands</span></div>
-          </div>
-          <span class="service-explore"><span class="service-explore-label">Explore</span><span class="service-explore-arrow" aria-hidden="true">&rarr;</span></span>
-        </div>
+        <!-- RIGHT: interactive services list -->
+        <div class="svc-list" data-svc-list>
+          <span class="svc-highlight" data-svc-highlight aria-hidden="true"></span>
 
-        <div class="service-row">
-          <span class="service-num">03</span>
-          <div class="service-body">
-            <h3>Digital presence</h3>
-            <p>Websites, app UI/UX, SEO, Google Business profile, social profile setup, link-in-bio, email and newsletter templates.</p>
-            <div class="service-tags"><span>Websites</span><span>UI/UX</span><span>SEO</span><span>Templates</span></div>
-          </div>
-          <span class="service-explore"><span class="service-explore-label">Explore</span><span class="service-explore-arrow" aria-hidden="true">&rarr;</span></span>
-        </div>
+          <a class="svc-row" href="#contact" data-svc-row data-index="0" data-service="Strategy">
+            <span class="svc-row-inner">
+              <span class="svc-row-top">
+                <span class="svc-row-name">Strategy</span>
+                <span class="svc-row-arrow" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="svc-row-cat">Positioning &middot; Naming &middot; Brand architecture &middot; Research</span>
+              <span class="svc-row-desc">Brand audits, market and competitor research, personas, positioning, purpose and values, naming and taglines.</span>
+            </span>
+          </a>
 
-        <div class="service-row">
-          <span class="service-num">04</span>
-          <div class="service-body">
-            <h3>Content</h3>
-            <p>Social posts and carousels, reels and video scripts, ad creatives, copywriting, content calendars, AI-generated visuals, shoot planning.</p>
-            <div class="service-tags"><span>Social content</span><span>Copywriting</span><span>Calendars</span><span>Shoot planning</span></div>
-          </div>
-          <span class="service-explore"><span class="service-explore-label">Explore</span><span class="service-explore-arrow" aria-hidden="true">&rarr;</span></span>
-        </div>
+          <a class="svc-row" href="#contact" data-svc-row data-index="1" data-service="Identity &amp; Design">
+            <span class="svc-row-inner">
+              <span class="svc-row-top">
+                <span class="svc-row-name">Identity &amp; design</span>
+                <span class="svc-row-arrow" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="svc-row-cat">Logo &amp; system &middot; Guidelines &middot; Packaging &middot; Rebrands</span>
+              <span class="svc-row-desc">Logos, colour, typography, brand guidelines, voice and tone, stationery, packaging, pitch decks and rebrands.</span>
+            </span>
+          </a>
 
-        <div class="service-row">
-          <span class="service-num">05</span>
-          <div class="service-body">
-            <h3>Personal branding</h3>
-            <p>Founder, creator and professional branding, portfolios, LinkedIn and Instagram makeovers, media kits, bios.</p>
-            <div class="service-tags"><span>Founder brand</span><span>Portfolios</span><span>Media kits</span><span>Profile makeovers</span></div>
-          </div>
-          <span class="service-explore"><span class="service-explore-label">Explore</span><span class="service-explore-arrow" aria-hidden="true">&rarr;</span></span>
-        </div>
+          <a class="svc-row" href="#contact" data-svc-row data-index="2" data-service="Digital Presence">
+            <span class="svc-row-inner">
+              <span class="svc-row-top">
+                <span class="svc-row-name">Digital presence</span>
+                <span class="svc-row-arrow" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="svc-row-cat">Websites &middot; UI/UX &middot; SEO &middot; Templates</span>
+              <span class="svc-row-desc">Websites, app UI/UX, SEO, Google Business profile, social profile setup, link-in-bio and email templates.</span>
+            </span>
+          </a>
 
-        <div class="service-row">
-          <span class="service-num">06</span>
-          <div class="service-body">
-            <h3>Marketing &amp; growth</h3>
-            <p>Social media management, paid ads, influencer outreach, launch campaigns, lead funnels, monthly reports.</p>
-            <div class="service-tags"><span>Paid ads</span><span>Campaigns</span><span>Lead funnels</span><span>Reporting</span></div>
-          </div>
-          <span class="service-explore"><span class="service-explore-label">Explore</span><span class="service-explore-arrow" aria-hidden="true">&rarr;</span></span>
-        </div>
+          <a class="svc-row" href="#contact" data-svc-row data-index="3" data-service="Content">
+            <span class="svc-row-inner">
+              <span class="svc-row-top">
+                <span class="svc-row-name">Content</span>
+                <span class="svc-row-arrow" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="svc-row-cat">Social content &middot; Copywriting &middot; Calendars &middot; Shoot planning</span>
+              <span class="svc-row-desc">Social posts and carousels, reels and video scripts, ad creatives, copywriting, calendars and shoot planning.</span>
+            </span>
+          </a>
 
-        <div class="service-row">
-          <span class="service-num">07</span>
-          <div class="service-body">
-            <h3>Automation &amp; tech</h3>
-            <p>Chatbots, CRM and lead tracking, booking and order systems, dashboards, workflow automation.</p>
-            <div class="service-tags"><span>CRM</span><span>Chatbots</span><span>Dashboards</span><span>Workflow automation</span></div>
-          </div>
-          <span class="service-explore"><span class="service-explore-label">Explore</span><span class="service-explore-arrow" aria-hidden="true">&rarr;</span></span>
-        </div>
+          <a class="svc-row" href="#contact" data-svc-row data-index="4" data-service="Personal Branding">
+            <span class="svc-row-inner">
+              <span class="svc-row-top">
+                <span class="svc-row-name">Personal branding</span>
+                <span class="svc-row-arrow" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="svc-row-cat">Founder brand &middot; Portfolios &middot; Media kits &middot; Profile makeovers</span>
+              <span class="svc-row-desc">Founder, creator and professional branding, portfolios, LinkedIn and Instagram makeovers, media kits and bios.</span>
+            </span>
+          </a>
 
-        <div class="service-row">
-          <span class="service-num">08</span>
-          <div class="service-body">
-            <h3>Maintenance</h3>
-            <p>Monthly brand health checks, website upkeep, ongoing content retainers, reputation management, quarterly reviews.</p>
-            <div class="service-tags"><span>Health checks</span><span>Website upkeep</span><span>Retainers</span><span>Quarterly reviews</span></div>
-          </div>
-          <span class="service-explore"><span class="service-explore-label">Explore</span><span class="service-explore-arrow" aria-hidden="true">&rarr;</span></span>
-        </div>
+          <a class="svc-row" href="#contact" data-svc-row data-index="5" data-service="Marketing &amp; Growth">
+            <span class="svc-row-inner">
+              <span class="svc-row-top">
+                <span class="svc-row-name">Marketing &amp; growth</span>
+                <span class="svc-row-arrow" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="svc-row-cat">Paid ads &middot; Campaigns &middot; Lead funnels &middot; Reporting</span>
+              <span class="svc-row-desc">Social media management, paid ads, influencer outreach, launch campaigns, lead funnels and monthly reports.</span>
+            </span>
+          </a>
 
+          <a class="svc-row" href="#contact" data-svc-row data-index="6" data-service="Automation &amp; Tech">
+            <span class="svc-row-inner">
+              <span class="svc-row-top">
+                <span class="svc-row-name">Automation &amp; tech</span>
+                <span class="svc-row-arrow" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="svc-row-cat">CRM &middot; Chatbots &middot; Dashboards &middot; Workflow automation</span>
+              <span class="svc-row-desc">Chatbots, CRM and lead tracking, booking and order systems, dashboards and workflow automation.</span>
+            </span>
+          </a>
+
+          <a class="svc-row" href="#contact" data-svc-row data-index="7" data-service="Maintenance">
+            <span class="svc-row-inner">
+              <span class="svc-row-top">
+                <span class="svc-row-name">Maintenance</span>
+                <span class="svc-row-arrow" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="svc-row-cat">Health checks &middot; Website upkeep &middot; Retainers &middot; Quarterly reviews</span>
+              <span class="svc-row-desc">Monthly brand health checks, website upkeep, ongoing content retainers, reputation management and reviews.</span>
+            </span>
+          </a>
+
+        </div>
       </div>
     </div>
   </section>
