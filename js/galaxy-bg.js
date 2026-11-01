@@ -10,7 +10,7 @@ import * as THREE from 'three'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'
-import { animate, scroll } from 'motion'
+import { scroll } from 'motion'
 
 const canvas = document.getElementById('bg-galaxy')
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -26,7 +26,9 @@ function init() {
   const scrollDiveZ = 2.5, scrollSpin = 1.77, scrollExpand = 0.66
   const cornerBlue = '#81a3ae', cornerOrange = '#a7bec5'
   const atmoColor = '#cdd9dd', atmoCount = 220, atmoSize = 39, atmoSpeed = 3.35
-  const TARGET_OPACITY = 0.13                 // how present the field is over the paper
+  const BASE_OPACITY = 0.09                    // field strength once past the hero (reduced)
+  const HERO_FADE_START = 0.45                 // begin revealing after scrolling 0.45 viewports
+  const HERO_FADE_RANGE = 0.6                  // ...reaching full BASE_OPACITY 0.6 viewports later
 
   const Lerp = (a, b, t = 0.075) => a + (b - a) * t
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v))
@@ -220,12 +222,13 @@ function init() {
   }
   window.addEventListener('scroll', readScroll, { passive: true })
 
-  /* ---- reveal with motion once the first frame is on screen ---- */
-  let revealed = false
-  const reveal = () => {
-    if (revealed) return
-    revealed = true
-    animate(canvas, { opacity: [0, TARGET_OPACITY] }, { duration: 2.4, ease: 'easeOut' })
+  /* ---- hero-aware opacity: 0 while the hero is on screen, ramping to
+         BASE_OPACITY as it scrolls away (smoothed each frame) ---- */
+  let curOpacity = 0
+  function targetOpacity() {
+    const vh = window.innerHeight || 1
+    const f = clamp((window.scrollY - vh * HERO_FADE_START) / (vh * HERO_FADE_RANGE), 0, 1)
+    return BASE_OPACITY * f
   }
 
   /* ---- loop (paused when the tab is hidden) ---- */
@@ -243,7 +246,8 @@ function init() {
     cloud.rotation.x += spin * 0.35
     finalPass.uniforms.iTime.value = t
     composer.render()
-    reveal()
+    curOpacity = Lerp(curOpacity, targetOpacity(), 0.1)
+    canvas.style.opacity = curOpacity.toFixed(3)
     requestAnimationFrame(frame)
   }
   requestAnimationFrame(frame)
