@@ -259,7 +259,7 @@ p.body-copy { max-width: var(--max-line); color: var(--ink-2); }
 /* ===== Hero ===== */
 .hero { padding-top: clamp(60px, 9vw, 120px); position: relative; }
 .hero-grid { display: grid; gap: 2.5rem; }
-.hero h1 { margin-bottom: 1.5rem; }
+.hero h1 { margin-bottom: 1.5rem; color: var(--on-dark); }  /* white — reads on the galaxy hero */
 .hero .lead { margin-bottom: 2.25rem; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: clamp(2.5rem, 6vw, 5rem); }
 

@@ -26,9 +26,10 @@ function init() {
   const scrollDiveZ = 2.5, scrollSpin = 1.77, scrollExpand = 0.66
   const cornerBlue = '#81a3ae', cornerOrange = '#a7bec5'
   const atmoColor = '#cdd9dd', atmoCount = 220, atmoSize = 39, atmoSpeed = 3.35
-  const BASE_OPACITY = 0.09                    // field strength once past the hero (reduced)
-  const HERO_FADE_START = 0.45                 // begin revealing after scrolling 0.45 viewports
-  const HERO_FADE_RANGE = 0.6                  // ...reaching full BASE_OPACITY 0.6 viewports later
+  const HERO_OPACITY = 1.0                      // field strength over the hero (maximum)
+  const BASE_OPACITY = 0.09                     // field strength once past the hero (reduced)
+  const HERO_FADE_START = 0.45                  // begin transitioning after scrolling 0.45 viewports
+  const HERO_FADE_RANGE = 0.6                   // ...reaching BASE_OPACITY 0.6 viewports later
 
   const Lerp = (a, b, t = 0.075) => a + (b - a) * t
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v))
@@ -228,7 +229,7 @@ function init() {
   function targetOpacity() {
     const vh = window.innerHeight || 1
     const f = clamp((window.scrollY - vh * HERO_FADE_START) / (vh * HERO_FADE_RANGE), 0, 1)
-    return BASE_OPACITY * f
+    return Lerp(HERO_OPACITY, BASE_OPACITY, f)   // max over hero → reduced below
   }
 
   /* ---- loop (paused when the tab is hidden) ---- */
