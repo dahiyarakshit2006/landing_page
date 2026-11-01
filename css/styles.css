@@ -1,14 +1,25 @@
 /* ===== Reset ===== */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+html { background: var(--paper); }
 body {
-  background: var(--paper);
+  background: transparent;              /* let the fixed galaxy canvas show through */
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* ===== Ambient galaxy background (subtle, fixed behind everything) ===== */
+#bg-galaxy {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  display: block; z-index: -1; pointer-events: none;
+  opacity: 0;                           /* faded in by motion once the scene is ready */
+}
+@media (prefers-reduced-motion: reduce) {
+  #bg-galaxy { display: none; }         /* no ambient motion for reduced-motion users */
 }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }

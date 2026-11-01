@@ -30,6 +30,16 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/styles.css">
 
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.143.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.143.0/examples/jsm/",
+    "motion": "https://cdn.jsdelivr.net/npm/motion@14.9.0/+esm"
+  }
+}
+</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,6 +52,7 @@
 </script>
 </head>
 <body>
+<canvas id="bg-galaxy" aria-hidden="true"></canvas>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="announce" data-announce>
@@ -572,5 +583,6 @@
 <script src="vendor/lenis.min.js"></script>
 <script src="js/content.js"></script>
 <script src="js/main.js"></script>
+<script type="module" src="js/galaxy-bg.js"></script>
 </body>
 </html>
